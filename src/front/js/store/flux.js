@@ -1,54 +1,74 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
+  return {
+    store: {
+      user: null,
+      token: sessionStorage.getItem("token"),
+    },
+    actions: {
+      createUser: async (userInfo) => {
+        const opts = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: userInfo.name,
+            email: userInfo.email,
+            password: userInfo.password,
+          }),
+        };
+        const res = await fetch(process.env.BACKEND_URL + "/api/signup", opts);
+        if (res.status < 200 || res.status >= 300) {
+          throw new Error("There was an error signing up the user");
+        }
+        const data = await res.json();
+        setStore({ user: data });
+      },
+      login: async (userInfo) => {
+        const opts = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: userInfo.email,
+            password: userInfo.password,
+          }),
+        };
+        const res = await fetch(process.env.BACKEND_URL + "/api/login", opts);
+        if (res.status < 200 || res.status >= 300) {
+          throw new Error("There was an error signing in");
+        }
+        const data = await res.json();
+        sessionStorage.setItem("token", data.access_token);
 
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
-	};
+        setStore({ token: data.access_token, user: data.user });
+      },
+      getUser: async () => {
+        const token = sessionStorage.getItem("token");
+        const opts = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        };
+        const res = await fetch(process.env.BACKEND_URL + "/api/user", opts);
+        if (res.status < 200 || res.status >= 300) {
+          throw new Error("There was an error signing in");
+        }
+        const data = await res.json();
+        console.log(data);
+        setStore({ user: data });
+        return true;
+      },
+      logout: () => {
+        console.log("logout");
+        const token = sessionStorage.removeItem("token");
+        setStore({ token: null, user: null });
+      },
+    },
+  };
 };
 
 export default getState;

@@ -1,0 +1,26 @@
+h1 {
+  margin-top: 5dvh;
+}
+.signupContainer {
+  margin: 10dvh auto;
+  width: 70dvh;
+  background: #eba75d;
+  border-radius: 12.5%;
+}
+form {
+  margin: 10dvh auto;
+  height: 65dvh;
+  width: 60dvh;
+  background: #d17834;
+  border-radius: 12.5%;
+  padding: 3dvh 0;
+  line-height: 0.5;
+}
+.row {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: x-large;
+}
+label {
+}

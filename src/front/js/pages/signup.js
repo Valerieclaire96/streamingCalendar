@@ -1,32 +1,41 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, useNavigate } from "react-router-dom";
 import "../../styles/signup.css";
 
-export default function Home() {
+export default function Signup() {
   const { store, actions } = useContext(Context);
-  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
-  const navigate = useNavigate()
+  const [userInfo, setUserInfo] = useState({ name: "", email: "", password: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo((prevUserInfo) => ({
       ...prevUserInfo,
-      [name]: value,
+      [name]: value
     }));
   };
 
-  async function login(e) {
+  const signup = (e) => {
     e.preventDefault();
-    await actions.login(userInfo);
-    navigate("/profile")
+    actions.createUser(userInfo);
   };
 
   return (
     <div className="whole-wheat text-center">
-      <h1>Login</h1>
+      <h1>Sign up today!</h1>
       <div className="signupContainer">
         <form>
+          <div className="row g-3 align-items-center">
+            <label htmlFor="name" className="col-form-label">
+              Name
+            </label>
+            <input
+              type="text"
+              className="mt-0"
+              name="name"
+              value={userInfo.name}
+              onChange={handleChange}
+            />
+          </div>
           <div className="row g-3 align-items-center">
             <label htmlFor="email" className="col-form-label">
               Email
@@ -52,16 +61,14 @@ export default function Home() {
               value={userInfo.password}
               onChange={handleChange}
             />
+            <div>
+              <span id="passwordHelpInline" className="form-text">
+                Must be 8-20 characters long.
+              </span>
+            </div>
           </div>
           <div className="row g-3 align-items-center">
-            <button className="btn btn-info" onClick={(e) => login(e)}>
-              Submit
-            </button>
-          </div>
-		  <div className="row g-3 align-items-center">
-            <Link to={"/signup"} className="btn btn-info" onClick={(e) => login(e)}>
-              Create an Account
-            </Link>
+            <button className="btn btn-info" onClick={(e) => signup(e)}>Submit</button>
           </div>
         </form>
       </div>
