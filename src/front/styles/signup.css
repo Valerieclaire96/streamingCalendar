@@ -1,4 +1,4 @@
-h1 {
+.signupH1 {
   margin-top: 5dvh;
 }
 .signupContainer {
@@ -22,5 +22,4 @@ form {
   text-align: center;
   font-size: x-large;
 }
-label {
-}
+

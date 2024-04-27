@@ -7,10 +7,11 @@ import Home from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import Signup from "./pages/signup";
-import SavingsGoal from "./pages/savingsGoal";
-import WishList from "./pages/wishList";
 import Profile from "./pages/profile";
 import CalendarPage from "./component/calendar";
+import CatSelection from "./pages/catSelection";
+import MealCat from "./pages/mealCat";
+import Recipe from "./pages/recipe";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -34,11 +35,12 @@ const Layout = () => {
             <Route element={<Home />} path="/" />
             <Route element={<Demo />} path="/demo" />
             <Route element={<Signup />} path="/signup" />
-            <Route element={<SavingsGoal />} path="/savings" />
             <Route element={<Profile />} path="/profile" />
-            <Route element={<WishList />} path="/wishlist" />
             <Route element={<CalendarPage />} path="/calendar" />
-            <Route element={<Single />} path="/single/:theid" />
+            <Route element={<CatSelection />} path="/categories" />
+            <Route element={<MealCat />} path="/category/:cat" />
+            <Route element={<MealCat />} path="/category/:cat" />
+            <Route element={<Recipe />} path="/meals/:id" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />

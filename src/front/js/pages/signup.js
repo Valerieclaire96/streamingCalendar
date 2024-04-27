@@ -4,13 +4,17 @@ import "../../styles/signup.css";
 
 export default function Signup() {
   const { store, actions } = useContext(Context);
-  const [userInfo, setUserInfo] = useState({ name: "", email: "", password: "" });
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo((prevUserInfo) => ({
       ...prevUserInfo,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -21,7 +25,7 @@ export default function Signup() {
 
   return (
     <div className="whole-wheat text-center">
-      <h1>Sign up today!</h1>
+      <h1 className="signupH1">Sign up today!</h1>
       <div className="signupContainer">
         <form>
           <div className="row g-3 align-items-center">
@@ -68,7 +72,9 @@ export default function Signup() {
             </div>
           </div>
           <div className="row g-3 align-items-center">
-            <button className="btn btn-info" onClick={(e) => signup(e)}>Submit</button>
+            <button className="btn btn-pink" onClick={(e) => signup(e)}>
+              Submit
+            </button>
           </div>
         </form>
       </div>

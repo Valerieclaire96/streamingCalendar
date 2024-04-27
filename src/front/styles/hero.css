@@ -1,0 +1,41 @@
+.hero {
+    height: fit-content;
+    padding: 5px 0;
+    box-shadow: 0px 3px 29px rgba(0, 0, 0, 0.3);
+    background: var(--accentLight)
+} 
+
+.feat-recipe {
+  height: fit-content;
+  padding: 5px 0;
+  width: 95%;
+}
+.details {
+  width: 65%;
+}
+
+.hero-pic-one {
+  width: 28dvw;
+  margin-top: 1dvhh;
+  border-radius: 12rem;
+  border: 18px double rgba(73, 86, 66, 0.8);
+}
+.btn-container {
+  width: 30%;
+}
+.selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 33%;
+  text-align: center;
+  margin: 7rem 0;
+}
+
+.selection-icon {
+  background: var(--primary);
+  padding: 5px;
+  width: 30%;
+  border-radius: 12.5%;
+  padding: 2rem;
+}

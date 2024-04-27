@@ -1,6 +1,53 @@
+:root {
+  --text: rgb(73, 86, 66);
+  --background: linear-gradient(89deg, rgb(253, 220, 155) 26.2%, rgb(255, 215, 165) 48.5%);;
+  --primary: #D07533;
+  --secondary: #B65200;
+  --tertiary: #FFC465;
+  --accent: #A01641;
+  --accentLight: #F4E4D2;
+
+}
+
 body {
-  background: #E8DFDA;
+  background: var(--background);
   font-family: "Chicle", serif;
   font-weight: 400;
   font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text);
+}
+.btn-pink {
+  background: var(--accent);
+}
+.btn-main {
+  background: var(--primary);
+}
+.btn-second {
+  background: var(--secondary);
+}
+.background {
+  background: var(--background);
+}
+.primary {
+  background: var(--primary);
+}
+.secondary {
+  background: var(--secondary);
+}
+.accent {
+  background: var(--accent);
+}
+.gradient-orange {
+  background: linear-gradient(153deg, rgba(185,77,11,1) 5%, rgba(189,99,37,0.9289916650253851) 50%, rgba(217,128,60,1) 90%);
+}
+.imgbackground {
+  background: white;
 }
