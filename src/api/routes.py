@@ -10,6 +10,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from datetime import datetime, timedelta
 import os 
+import hashlib
 
 api = Blueprint('api', __name__)
 
@@ -44,7 +45,7 @@ def create_account():
 def login():
     request_body = request.get_json()
     email = request_body.get('email')
-    password = request_body.get('password')
+    password = hashlib.sha256(body['password'].encode("utf-8")).hexdigest()
     print(email, password)
     user = User.query.filter_by(email=email, password=password).first()
     if user is not None:
